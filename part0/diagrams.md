@@ -44,6 +44,7 @@ sequenceDiagram
 
 ## 0.5: Loading the SPA
 
+```
 sequenceDiagram
 participant Browser
 participant Server
@@ -71,9 +72,11 @@ participant Server
     deactivate Server
 
     Note right of Browser: Browser uses JS to display the notes (without full reloads)
+```
 
 ## 0.6: Creating a note in SPA
 
+```
 sequenceDiagram
 participant Browser
 participant Server
@@ -88,3 +91,4 @@ participant Server
     deactivate Server
 
     Note right of Browser: UI already shows the new note. Optionally, the SPA may fetch /data.json again to stay consistent.
+```
