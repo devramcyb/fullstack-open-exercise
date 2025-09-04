@@ -4,6 +4,28 @@ const Button = (props) => {
   return <button onClick={props.onClick}>{props.text}</button>;
 };
 
+const Statistics = ({ good, neutral, bad }) => {
+  const all = good + neutral + bad;
+  const average = (good - bad) / all;
+  const positive = (good * 100) / all;
+  return (
+    <>
+      {all === 0 ? (
+        <p>no Feedback given</p>
+      ) : (
+        <div>
+          <p>good {good}</p>
+          <p>neutral {neutral}</p>
+          <p>bad {bad}</p>
+          <p>all {all}</p>
+          <p>average {average}</p>
+          <p>positive {positive}%</p>
+        </div>
+      )}
+    </>
+  );
+};
+
 const App = () => {
   // save clicks of each button to its own state
   const [good, setGood] = useState(0);
@@ -11,9 +33,6 @@ const App = () => {
   const [bad, setBad] = useState(0);
 
   // Calculate total from current state values
-  const all = good + neutral + bad;
-  const average = (good - bad) / all;
-  const positive = (good * 100) / all;
 
   function setGoodReview() {
     setGood(good + 1);
@@ -36,13 +55,7 @@ const App = () => {
       <Button onClick={setBadReview} text="bad" />
 
       <h1>Statistics</h1>
-
-      <p>good {good}</p>
-      <p>neutral {neutral}</p>
-      <p>bad {bad}</p>
-      <p>all {all}</p>
-      <p>average {average}</p>
-      <p>positive {positive}%</p>
+      <Statistics good={good} neutral={neutral} bad={bad} />
     </div>
   );
 };
